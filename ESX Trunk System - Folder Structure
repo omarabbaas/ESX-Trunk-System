@@ -1,0 +1,69 @@
+# ESX Trunk System - Folder Structure
+
+This document outlines the folder structure and file organization for the ESX Trunk System resource. This structure follows best practices for FiveM resource development, keeping related components organized and making the system easier to maintain.
+
+```
+esx_trunksystem/
+│
+├── fxmanifest.lua             # Resource manifest file with dependencies and file loading order
+├── config.lua                 # Configuration settings for the trunk system
+├── database.sql              # SQL schema for database setup
+│
+├── server/                    # Server-side scripts
+│   ├── server.lua            # Main server script with initialization
+│   ├── functions.lua         # Server utility functions
+│   ├── events.lua            # Server-side event handlers
+│   ├── commands.lua          # Admin commands for trunk management
+│   └── webhook.lua           # Optional Discord webhook integration
+│
+├── client/                    # Client-side scripts
+│   ├── client.lua            # Main client script
+│   ├── functions.lua         # Client utility functions
+│   ├── events.lua            # Client-side event handlers
+│   └── commands.lua          # Client commands
+│
+└── html/                      # User interface files
+    ├── index.html            # Main HTML file for UI
+    ├── js/
+    │   └── script.js         # JavaScript for UI functionality
+    ├── css/
+    │   └── style.css         # CSS styling for the UI
+    └── img/                   # Image directory
+        └── default.png       # Default item image
+```
+
+## Key Files and Their Purposes
+
+### Core Files
+- **fxmanifest.lua**: Defines the resource metadata, dependencies, and file loading order.
+- **config.lua**: Contains all configurable settings including vehicle capacities, permissions, and general behavior.
+- **database.sql**: SQL schema for creating the required database table.
+
+### Server-Side Files
+- **server.lua**: Initializes the server-side functionality and database connections.
+- **functions.lua**: Contains utility functions for server operations like saving trunk data.
+- **events.lua**: Handles all server-side events such as adding/removing items from trunks.
+- **commands.lua**: Defines admin commands for managing trunks (clear, check, share, transfer).
+- **webhook.lua**: Optional Discord integration for logging trunk activities.
+
+### Client-Side Files
+- **client.lua**: Main client script that handles trunk detection and interaction.
+- **functions.lua**: Contains utility functions like trunk position calculation.
+- **events.lua**: Handles client-side events and NUI callbacks.
+- **commands.lua**: Defines client commands like opening trunks and emergency reset.
+
+### User Interface Files
+- **index.html**: Main HTML structure for the trunk UI.
+- **script.js**: JavaScript code for UI functionality and communication with the client.
+- **style.css**: CSS styling for the trunk interface.
+- **default.png**: Default image for items without a specific icon.
+
+## Installation Notes
+
+1. Place the entire folder in your FiveM server's resources directory
+2. Import the database.sql file into your MySQL database
+3. Add `ensure esx_trunksystem` to your server.cfg
+4. Configure the settings in config.lua to match your server's needs
+5. Restart your server
+
+This structure makes it easy to navigate, modify, and maintain the resource. Each component is logically organized, and critical dependencies are loaded in the correct order via the fxmanifest.lua file.
